@@ -18,19 +18,23 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            Hello : ${user}
+            <h4>Транспортные происшествия</h4>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Element</th>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Address</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="element" items="${elementList}" varStatus="loop">
+                <c:forEach var="accident" items="${accidentList}">
                     <tr>
-                        <th scope="row">${loop.index + 1}</th>
-                        <td>${element}</td>
+                        <td scope="row">${accident.id}</td>
+                        <td scope="row">${accident.name}</td>
+                        <td scope="row">${accident.text}</td>
+                        <td scope="row">${accident.address}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
