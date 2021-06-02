@@ -18,28 +18,22 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h4>Транспортные происшествия</h4>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Text</th>
-                    <th scope="col">Address</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="accident" items="${accidentList}">
-                    <tr>
-                        <td scope="row">${accident.id}</td>
-                        <td scope="row">${accident.name}</td>
-                        <td scope="row">${accident.text}</td>
-                        <td scope="row">${accident.address}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <a href="<c:url value='/create'/>">Добавить инцидент</a>
+            <h4>Редактировать происшествие</h4>
+            <form action="<c:url value='/save'/>" method='POST'>
+                <div class="form-group">
+                    <label for="nameInput">Название</label>
+                    <input type="text" class="form-control" id="nameInput" name="name" value="${accident.name}">
+                </div>
+                <div class="form-group">
+                    <label for="textInput">Описание</label>
+                    <input type="text" class="form-control" id="textInput" name="text" value="${accident.text}">
+                </div>
+                <div class="form-group">
+                    <label for="textInput">Адрес</label>
+                    <input type="text" class="form-control" id="addressInput" name="address" value="${accident.address}">
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
         </div>
     </div>
 </div>
