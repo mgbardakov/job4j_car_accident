@@ -11,7 +11,9 @@ public abstract class MemCRUDRepository<T extends BaseEntity> implements CRUDRep
 
     @Override
     public T create(T model) {
-        model.setId(id.getAndIncrement());
+        if (!repository.containsKey(model.getId())) {
+            model.setId(id.getAndIncrement());
+        }
         repository.put(model.getId(), model);
         return model;
     }
@@ -37,4 +39,6 @@ public abstract class MemCRUDRepository<T extends BaseEntity> implements CRUDRep
         rslList.sort(Comparator.comparing(BaseEntity::getId));
         return rslList;
     }
+
+
 }

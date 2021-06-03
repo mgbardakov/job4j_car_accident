@@ -7,4 +7,5 @@ import java.util.List;
 public interface AccidentService {
     Accident addAccident(Accident accident);
     List<Accident> getAllAccidents();
+    Accident findById(int id);
 }

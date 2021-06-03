@@ -24,4 +24,9 @@ public class AccidentServiceImpl implements AccidentService {
     public List<Accident> getAllAccidents() {
         return accidentRepository.findAll(Accident.class);
     }
+
+    @Override
+    public Accident findById(int id) {
+        return accidentRepository.read(Accident.class, id);
+    }
 }
