@@ -29,8 +29,16 @@
                     <input type="text" class="form-control" id="textInput" name="text">
                 </div>
                 <div class="form-group">
-                    <label for="textInput">Адрес</label>
+                    <label for="addressInput">Адрес</label>
                     <input type="text" class="form-control" id="addressInput" name="address">
+                </div>
+                <div class="form-group">
+                    <label>Тип происшествия</label>
+                    <select name="accidentType.id">
+                        <c:forEach var="type" items="${types}" >
+                            <option value="${type.id}">${type.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>

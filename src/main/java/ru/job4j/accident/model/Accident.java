@@ -4,6 +4,10 @@ public class Accident extends BaseEntity {
     private String name;
     private String text;
     private String address;
+    private AccidentType accidentType;
+
+    public Accident() {
+    }
 
     public Accident(String name, String text, String address) {
         this.name = name;
@@ -33,6 +37,14 @@ public class Accident extends BaseEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public AccidentType getAccidentType() {
+        return accidentType;
+    }
+
+    public void setAccidentType(AccidentType accidentType) {
+        this.accidentType = accidentType;
     }
 
     @Override
