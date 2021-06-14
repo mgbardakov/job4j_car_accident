@@ -17,7 +17,13 @@ public class AccidentServiceImpl implements AccidentService {
 
     @Override
     public Accident addAccident(Accident accident) {
-        return accidentRepository.create(accident);
+        if (accident.getId() == null) {
+            return accidentRepository.create(accident);
+        } else {
+            accidentRepository.update(accident);
+            return accident;
+        }
+
     }
 
     @Override

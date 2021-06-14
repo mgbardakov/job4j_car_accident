@@ -41,8 +41,10 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         var accidentTypeId = accident.getAccidentType().getId();
         accident.setAccidentType(accidentTypeService.findTypeById(accidentTypeId));
-        var rules = getRulesFromRequest(req);
-        accident.setRules(rules);
+        var ruleIds = req.getParameterValues("rIds");
+        if (ruleIds != null) {
+            accident.setRules(getRulesFromRequest(req));
+        }
         accidentService.addAccident(accident);
         return "redirect:/";
     }

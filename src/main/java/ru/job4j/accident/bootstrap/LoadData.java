@@ -8,6 +8,8 @@ import ru.job4j.accident.service.AccidentService;
 import ru.job4j.accident.service.AccidentTypeService;
 import ru.job4j.accident.service.RuleService;
 
+import java.util.Set;
+
 @Component
 public class LoadData {
 
@@ -22,20 +24,31 @@ public class LoadData {
     }
 
     public void load() {
-        accidentService.addAccident(new Accident("Столкновение",
-                                                 "Столкновение 2-х машин",
-                                                 "Перекресток Ленина-Вороширова"));
-        accidentService.addAccident(new Accident("Наезд на пешехода",
-                                                 "Травмы средней тяжести",
-                                                 "ул. Красной Зорьки"));
-        accidentService.addAccident(new Accident("Столкновение",
-                                                 "Столкновение со столбом",
-                                                 "ул. Аркадия Укупника"));
-        accidentTypeService.addAccidentType(AccidentType.of("Две машины"));
-        accidentTypeService.addAccidentType(AccidentType.of("Машина и человек"));
-        accidentTypeService.addAccidentType(AccidentType.of("Машина и велосипед"));
-        ruleService.addRule(Rule.of("Cтатья. 1"));
-        ruleService.addRule(Rule.of("Cтатья. 2"));
-        ruleService.addRule(Rule.of("Cтатья. 3"));
+        if (accidentService.getAllAccidents().isEmpty()) {
+
+            accidentTypeService.addAccidentType(AccidentType.of("Две машины"));
+            accidentTypeService.addAccidentType(AccidentType.of("Машина и человек"));
+            accidentTypeService.addAccidentType(AccidentType.of("Машина и велосипед"));
+
+            ruleService.addRule(Rule.of("Cтатья. 1"));
+            ruleService.addRule(Rule.of("Cтатья. 2"));
+            ruleService.addRule(Rule.of("Cтатья. 3"));
+
+            accidentService.addAccident(new Accident("Столкновение",
+                    "Столкновение 2-х машин",
+                    "Перекресток Ленина-Вороширова",
+                    accidentTypeService.findTypeById(1),
+                    Set.of(ruleService.findById(1))));
+            accidentService.addAccident(new Accident("Наезд на пешехода",
+                    "Травмы средней тяжести",
+                    "ул. Красной Зорьки",
+                    accidentTypeService.findTypeById(1),
+                    Set.of(ruleService.findById(1))));
+            accidentService.addAccident(new Accident("Столкновение",
+                    "Столкновение со столбом",
+                    "ул. Аркадия Укупника",
+                    accidentTypeService.findTypeById(1),
+                    Set.of(ruleService.findById(1))));
+        }
     }
 }

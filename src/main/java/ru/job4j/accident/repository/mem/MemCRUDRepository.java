@@ -1,12 +1,13 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.repository.mem;
 
 import ru.job4j.accident.model.BaseEntity;
+import ru.job4j.accident.repository.CRUDRepository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class MemCRUDRepository<T extends BaseEntity> implements CRUDRepository<T> {
-    private final Map<Integer, T> repository = new HashMap<>();
+    protected final Map<Integer, T> repository = new HashMap<>();
     private final AtomicInteger id = new AtomicInteger(1);
 
     @Override

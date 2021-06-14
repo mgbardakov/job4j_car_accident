@@ -26,6 +26,8 @@
                     <th scope="col">id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Text</th>
+                    <th scope="col">Accident type</th>
+                    <th scope="col">Rules</th>
                     <th scope="col">Address</th>
                 </tr>
                 </thead>
@@ -36,6 +38,10 @@
                             <td scope="row">${accident.id}</td>
                             <td scope="row">${accident.name}</td>
                             <td scope="row">${accident.text}</td>
+                            <td scope="row">${accident.accidentType.name}</td>
+                            <td scope="row"><c:forEach var = "rule" items="${accident.rules}">
+                                ${rule.name}<br>
+                            </c:forEach></td>
                             <td scope="row">${accident.address}
                                 <a href="<c:url value='/update?id=${accident.id}'/>">
                                     <i class="fa fa-pencil-square-o float-right" aria-hidden="true"></i>

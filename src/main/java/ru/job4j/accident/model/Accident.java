@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Accident extends BaseEntity {
@@ -7,7 +8,7 @@ public class Accident extends BaseEntity {
     private String text;
     private String address;
     private AccidentType accidentType;
-    private Set<Rule> rules;
+    private Set<Rule> rules = new HashSet<Rule>();
 
     public Accident() {
     }
@@ -16,6 +17,14 @@ public class Accident extends BaseEntity {
         this.name = name;
         this.text = text;
         this.address = address;
+    }
+
+    public Accident(String name, String text, String address, AccidentType accidentType, Set<Rule> rules) {
+        this.name = name;
+        this.text = text;
+        this.address = address;
+        this.accidentType = accidentType;
+        this.rules = rules;
     }
 
     public String getName() {
