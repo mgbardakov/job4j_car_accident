@@ -1,5 +1,6 @@
 package ru.job4j.accident.service;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentRepository;
@@ -7,6 +8,7 @@ import ru.job4j.accident.repository.AccidentRepository;
 import java.util.List;
 
 @Service
+@Profile({"orm", "jdbc"})
 public class AccidentServiceImpl implements AccidentService {
 
     private final AccidentRepository accidentRepository;
