@@ -1,7 +1,14 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "rule")
 public class Rule extends BaseEntity {
 
+    @Column(name = "name")
     private String name;
 
     public static Rule of(String name) {

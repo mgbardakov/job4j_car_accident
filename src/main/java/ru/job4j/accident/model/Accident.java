@@ -1,13 +1,24 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@Entity
+@Table(name = "accident")
 public class Accident extends BaseEntity {
+    @Column(name = "name")
     private String name;
+    @Column(name = "text")
     private String text;
+    @Column(name = "address")
     private String address;
+    @OneToOne
+    @JoinColumn(name = "accident_type_id")
     private AccidentType accidentType;
+    @ManyToMany
+    @JoinTable(name = "accident_rule",
+            joinColumns = @JoinColumn(name = "accident_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<Rule> rules = new HashSet<Rule>();
 
     public Accident() {
@@ -19,12 +30,11 @@ public class Accident extends BaseEntity {
         this.address = address;
     }
 
-    public Accident(String name, String text, String address, AccidentType accidentType, Set<Rule> rules) {
+    public Accident(String name, String text, String address, AccidentType accidentType) {
         this.name = name;
         this.text = text;
         this.address = address;
         this.accidentType = accidentType;
-        this.rules = rules;
     }
 
     public String getName() {
@@ -67,6 +77,10 @@ public class Accident extends BaseEntity {
         this.rules = rules;
     }
 
+    public void addRule(Rule rule) {
+        this.rules.add(rule);
+    }
+
     @Override
     public boolean equals(Object o) {
         return super.equals(o);
@@ -76,4 +90,5 @@ public class Accident extends BaseEntity {
     public int hashCode() {
         return super.hashCode();
     }
+
 }

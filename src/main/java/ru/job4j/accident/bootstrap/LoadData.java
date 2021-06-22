@@ -26,29 +26,43 @@ public class LoadData {
     public void load() {
         if (accidentService.getAllAccidents().isEmpty()) {
 
-            accidentTypeService.addAccidentType(AccidentType.of("Две машины"));
-            accidentTypeService.addAccidentType(AccidentType.of("Машина и человек"));
-            accidentTypeService.addAccidentType(AccidentType.of("Машина и велосипед"));
+            var accidentType1 = AccidentType.of("Две машины");
+            var accidentType2 = AccidentType.of("Машина и человек");
+            var accidentType3 = AccidentType.of("Машина и велосипед");
 
-            ruleService.addRule(Rule.of("Cтатья. 1"));
-            ruleService.addRule(Rule.of("Cтатья. 2"));
-            ruleService.addRule(Rule.of("Cтатья. 3"));
+            accidentTypeService.addAccidentType(accidentType1);
+            accidentTypeService.addAccidentType(accidentType2);
+            accidentTypeService.addAccidentType(accidentType3);
 
-            accidentService.addAccident(new Accident("Столкновение",
+            var rule1 = Rule.of("Cтатья. 1");
+            var rule2 = Rule.of("Cтатья. 2");
+            var rule3 = Rule.of("Cтатья. 3");
+
+            ruleService.addRule(rule1);
+            ruleService.addRule(rule2);
+            ruleService.addRule(rule3);
+
+            var accident1 = new Accident("Столкновение",
                     "Столкновение 2-х машин",
                     "Перекресток Ленина-Вороширова",
-                    accidentTypeService.findTypeById(1),
-                    Set.of(ruleService.findById(1))));
-            accidentService.addAccident(new Accident("Наезд на пешехода",
+                    accidentType1);
+            accident1.addRule(rule1);
+            accident1.addRule(rule2);
+            accidentService.addAccident(accident1);
+            var accident2 = new Accident("Наезд на пешехода",
                     "Травмы средней тяжести",
                     "ул. Красной Зорьки",
-                    accidentTypeService.findTypeById(1),
-                    Set.of(ruleService.findById(1))));
-            accidentService.addAccident(new Accident("Столкновение",
+                    accidentType2);
+            accident2.addRule(rule2);
+            accidentService.addAccident(accident2);
+            var accident3 = new Accident("Столкновение",
                     "Столкновение со столбом",
                     "ул. Аркадия Укупника",
-                    accidentTypeService.findTypeById(1),
-                    Set.of(ruleService.findById(1))));
+                    accidentType3);
+            accident3.addRule(rule3);
+            accident3.addRule(rule2);
+            accident2.addRule(rule1);
+            accidentService.addAccident(accident3);
         }
     }
 }
