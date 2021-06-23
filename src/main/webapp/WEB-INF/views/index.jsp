@@ -30,6 +30,9 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h4>Транспортные происшествия</h4>
+            <div class="float-right">
+                Login as : ${user.username}
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
